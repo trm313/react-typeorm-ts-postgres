@@ -1,8 +1,18 @@
 # Full-stack Boilerplate - React, Express, Node, TypeORM
 
-## Frontend
+## Development Runtime
 
-A React frontend will be served statically from the server
+In two terminals execute:
+
+`npm run dev` - starts the server in watch mode on port 3001
+
+`npm run client` - starts the client in development & watch mode on port 3000
+
+## Production Runtime
+
+Execute `npm run heroku-postbuild`, which will trigger the React client to build. The application will then be served statically from the server root
+
+## Frontend
 
 ### Technologies
 
