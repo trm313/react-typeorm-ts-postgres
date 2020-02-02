@@ -7,7 +7,9 @@
     "start": "node dist/server.js",
     "build": "tsc",
     "dev": "tsc-watch --onSuccess \"node ./dist/server.js\"",
-    "test": "jest --coverage --verbose"
+    "test": "jest --coverage --verbose",
+    "client": "cd client && npm start",
+    "heroku-postbuild": "cd client && npm install --only=dev && npm install --save-exact && npm run build"
   },
   "keywords": [],
   "author": "",
