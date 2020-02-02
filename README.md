@@ -6,21 +6,21 @@ A React frontend will be served statically from the server
 
 ### Technologies
 
-Library: React (built from Create-React-App)
-Routing: React-Router-Dom
-Styling: TailwindCSS
+- **Library:** React (built from Create-React-App)
+- **Routing:** React-Router-Dom
+- **Styling:** TailwindCSS
 
 ## Backend
 
 ### Technologies
 
-Environment: NodeJS
-Framework: Express
-Language: Typescript
-ORM: TypeORM
-Database: PostgreSQL
-Testing: Jest & Supertest
-User Authentication: Firebase UI
+- **Environment:** NodeJS
+- **Framework:** Express
+- **Language:** Typescript
+- **ORM:** TypeORM
+- **Database:** PostgreSQL
+- **Testing:** Jest & Supertest
+- **User Authentication:** Firebase UI
 
 # Resources
 
