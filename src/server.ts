@@ -1,6 +1,7 @@
 import http from "http";
 import express from "express";
 import dotenv from "dotenv";
+import path from "path";
 import { createConnection } from "typeorm";
 
 import env from "./config/env";
@@ -31,13 +32,19 @@ createConnection({
 })
   .then(async connection => {
     console.log(`Connected to PostgreSQL database`);
-
     await connection.synchronize();
 
     const router = express();
     applyMiddleware(middleware, router);
     applyRoutes(routes, router);
     applyMiddleware(errorHandlers, router);
+
+    // Serve frontend from client/build (need to step back out of dist)
+    // Possible "to do" - have react:build move the client folder into dist/
+    router.use(express.static(path.join(__dirname, "../client/build")));
+    router.use("*", (req, res) => {
+      res.sendFile(path.resolve(__dirname, "../client/build"));
+    });
 
     const { PORT = 3001 } = process.env;
     const server = http.createServer(router);

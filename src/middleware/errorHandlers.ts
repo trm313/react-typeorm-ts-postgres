@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction, Router } from "express";
 import * as ErrorHandler from "../utils/ErrorHandler";
 
+/* Disabled to allow static client to render when no API routes are being hit */
 const handle404Error = (router: Router) => {
   router.use((req: Request, res: Response) => {
     ErrorHandler.notFoundError();
@@ -19,4 +20,4 @@ const handleServerErrors = (router: Router) => {
   });
 };
 
-export default [handle404Error, handleClientErrors, handleServerErrors];
+export default [handleClientErrors, handleServerErrors];
