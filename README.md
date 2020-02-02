@@ -2,34 +2,25 @@
 
 ## Frontend
 
-### Technologies
-
 A React frontend will be served statically from the server
 
-This boilerplate leverages the following libaries:
+### Technologies
 
-- React, build from Create-React-App
-- Tailwindcss
+Library: React (built from Create-React-App)
+Routing: React-Router-Dom
+Styling: TailwindCSS
 
 ## Backend
 
 ### Technologies
 
-This boilerplate will leverage the following technologies once completed:
-
-- Node
-- Express
-- Typescript
-- TypeORM
-- PostgreSQL
-
-This boilerplate will leverage the following tools for its functional components:
-
-- Testing
-  - Jest
-  - Supertest
-- User Authentication
-  - Firebase UI
+Environment: NodeJS
+Framework: Express
+Language: Typescript
+ORM: TypeORM
+Database: PostgreSQL
+Testing: Jest & Supertest
+User Authentication: Firebase UI
 
 # Resources
 
