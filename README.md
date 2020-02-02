@@ -39,6 +39,7 @@ Source Code [alexpermyakov/node-rest-api](https://github.com/alexpermyakov/node-
 
 # To Do List
 
-[ ] Server static client/build directory from server
-[ ] Add Firebase UI for user authentication
-[ ] Set up user authorization rules
+- [x] Server static client/build directory from server
+- [] Add Firebase UI for user authentication
+- [] Set up user authorization rules
+- [] Push to heroku (ensure it builds the static frontend, get Heroku Postgres running)
