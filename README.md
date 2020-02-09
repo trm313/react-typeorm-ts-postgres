@@ -1,5 +1,7 @@
 # Full-stack Boilerplate - React, Express, Node, TypeORM
 
+This boilerplate is intended to allow for the quick setup of an application skeleton leveraging best practices, but also some opinionated libary and technology selections based on my preferred tools. However, outside of the major technologies being leveraged, it should be possible to easily remove or substitute many of the technologies (eg. replacing PostegreSQL with MongoDB, Express with Koa, or TailwindCSS in favor of SASS).
+
 ## Application Overview
 
 ### Frontend
