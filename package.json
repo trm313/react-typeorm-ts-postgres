@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node dist/server.js",
+    // "start": "node dist/server.js",
+    "start": "cd dist && node server.js",
     "build": "tsc",
     "dev": "tsc-watch --onSuccess \"node ./dist/server.js\"",
     "test": "jest --coverage --verbose",
