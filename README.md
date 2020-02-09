@@ -45,19 +45,19 @@ This boilerplate is intended to allow for the quick setup of an application skel
 
 ### Development Runtime
 
-In two terminals execute:
+In two terminals execute the following commands from the application root:
 
 `npm run dev` - starts the server in watch mode on port 3001
 
 `npm run client` - starts the client in development & watch mode on port 3000
 
-Calls prefaced with `/api` will be proxied to the development server on port 3001, as configured in the `setupProxy.js` file
+In development mode, calls from the frontend that are prefaced with `/api` will be proxied to the development server on port 3001, as configured in the `setupProxy.js` file
 
 ### Production Runtime
 
-Execute `npm run heroku-postbuild`, which will trigger both the backend server and the React frontend client to build. The application will then be served statically from the server root
+Executing `npm run heroku-postbuild` will trigger both the backend server and the React frontend client to build. The application will then be served statically from the server root
 
-### Deploying to Heroku
+#### Deploying to Heroku
 
 To deploy this application to Heroku:
 
