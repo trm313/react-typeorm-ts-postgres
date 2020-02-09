@@ -1,5 +1,26 @@
 # Full-stack Boilerplate - React, Express, Node, TypeORM
 
+## Application Overview
+
+### Frontend
+
+#### Technologies
+
+- **Library:** React (built from Create-React-App)
+- **Routing:** React-Router-Dom
+- **Styling:** TailwindCSS
+
+### Backend
+
+#### Technologies
+
+- **Environment:** NodeJS
+- **Framework:** Express
+- **Language:** Typescript
+- **ORM:** TypeORM
+- **Database:** PostgreSQL
+- **Testing:** Jest & Supertest
+
 ## Installation
 
 1. Clone this git repository: `git clone https://github.com/trm313/react-typeorm-ts-postgres.git [directory]`
@@ -28,24 +49,23 @@ Calls prefaced with `/api` will be proxied to the development server on port 300
 
 Execute `npm run heroku-postbuild`, which will trigger the React client to build. The application will then be served statically from the server root
 
-## Frontend
+### Build Process
 
-### Technologies
+#### Backend Server
 
-- **Library:** React (built from Create-React-App)
-- **Routing:** React-Router-Dom
-- **Styling:** TailwindCSS
+The `build` script from the server root will trigger `tsc` which will compile the source into the `dist/` folder. 
 
-## Backend
+Running `npm start` from the server root will then execute `node dist/server.js`, spinning up the server from the compiled `dist/` folder. 
 
-### Technologies
+The server will be looking to serve the front-end application from the `client/build` folder, which is compiled in the Frontend build step. The Frontend build is triggered by the `heroku-postbuild` script, which is automatically triggered when publishing to Heroku.
 
-- **Environment:** NodeJS
-- **Framework:** Express
-- **Language:** Typescript
-- **ORM:** TypeORM
-- **Database:** PostgreSQL
-- **Testing:** Jest & Supertest
+#### Frontend Application
+
+The `heroku-postbuild` script triggers the frontend to build its dependencies, and then launches the `build` script from the client `package.json` file. This `build` script launches two additional scripts: `build:css` and `build:react`.
+
+`build:css` tells TailwindCSS to compile from the `src/styles/index.css` file into an output file `src/index.css`, which is referenced directly from the `index.js` frontend file.
+
+`build:react` triggers the standard Create-React-App build process, which builds the client into subfolder `./Build`, which is served from the backend server directly.
 
 # Resources
 
