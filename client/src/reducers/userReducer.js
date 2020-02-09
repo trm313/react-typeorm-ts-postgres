@@ -10,10 +10,10 @@ const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    signUserIn(user) {
+    signUserIn(state, action) {
       return {
         signedIn: true,
-        data: user
+        data: action.payload
       };
     },
     signUserOut() {

@@ -13,10 +13,11 @@ let styles = {
     "block mt-4 md:inline-block md:mt-0 text-teal-200 hover:text-white mr-4 uppercase hover:shadow rounded-lg py-2 px-4"
 };
 
-const NavLink = ({ text, to, className = styles.link }) => {
+const NavLink = props => {
+  const { to, className = styles.link } = props;
   return (
     <Link to={to} className={className}>
-      {text}
+      {props.children}
     </Link>
   );
 };
@@ -63,20 +64,22 @@ const NavBar = ({ signUserOut }) => {
         }
       >
         <div className="text-sm md:flex-grow ml-12">
-          <NavLink to="#" text="Docs" />
-          <NavLink to="#" text="Examples" />
-          <NavLink to="#" text="Blog" />
+          <NavLink to="#">Docs</NavLink>
+          <NavLink to="#">Blog</NavLink>
+          {user.signedIn && <NavLink to="/dashboard">Dashboard</NavLink>}
         </div>
         <div className="ml-12">
-          {user.signedIn && (
-            <button onClick={() => auth.signOut()}>Sign Out</button>
-          )}
+          {user.signedIn && <NavLink to="/logout">Logout</NavLink>}
           {!user.signedIn && (
-            <NavLink
-              to="/login"
-              text="Sign Up"
-              className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 md:mt-0"
-            />
+            <>
+              <NavLink to="/login">Login</NavLink>
+              <NavLink
+                to="/login"
+                className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 md:mt-0"
+              >
+                Sign Up
+              </NavLink>
+            </>
           )}
         </div>
       </div>

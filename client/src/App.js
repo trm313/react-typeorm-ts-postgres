@@ -1,15 +1,22 @@
 import React, { useEffect } from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  Redirect
+} from "react-router-dom";
 import { connect } from "react-redux";
 import { useSelector, useDispatch } from "react-redux";
 
 import Login from "./components/Login";
+import Logout from "./components/Logout";
 import Landing from "./components/Landing";
 import Dashboard from "./components/Dashboard";
 import NavBar from "./components/NavBar";
 import "./App.css";
 
-import { auth } from "./services/firebase";
+import { auth, listenToFirebaseAuth } from "./services/firebase";
 
 import { signUserIn, signUserOut } from "./reducers/userReducer";
 
@@ -17,23 +24,7 @@ const App = ({ signUserIn, signUserOut }) => {
   const user = useSelector(store => store.user);
 
   useEffect(() => {
-    const listenToFirebaseAuth = () => {
-      console.log("listenToFirebaseAuth");
-      auth.onAuthStateChanged(user => {
-        if (user) {
-          signUserIn({
-            uid: user.uid,
-            email: user.email,
-            displayName: user.displayName,
-            providerData: user.providerData
-          });
-        } else {
-          signUserOut();
-        }
-      });
-    };
-
-    listenToFirebaseAuth();
+    listenToFirebaseAuth(signUserIn, signUserOut);
   }, []);
 
   return (
@@ -43,7 +34,13 @@ const App = ({ signUserIn, signUserOut }) => {
         <Switch>
           <Route exact path="/" component={Landing} />
           <Route exact path="/login" component={Login} />
-          <Route exact path="/dashboard" component={Dashboard} />
+          <PrivateRoute
+            path="/dashboard"
+            user={user}
+            component={Dashboard}
+            redirectTo="/"
+          />
+          <Route exact path="/logout" component={Logout} />
         </Switch>
       </div>
     </Router>
@@ -57,3 +54,28 @@ const mapDispatch = { signUserIn, signUserOut };
 
 // export default App;
 export default connect(null, mapDispatch)(App);
+
+/* Routes dependent on Props */
+const renderMergedProps = (component, ...rest) => {
+  const finalProps = Object.assign({}, ...rest);
+  return React.createElement(component, finalProps);
+};
+
+const PrivateRoute = ({ user, component, redirectTo, ...rest }) => (
+  <Route
+    {...rest}
+    render={routeProps => {
+      console.log("PrivateRoute", user);
+      return user && user.signedIn ? (
+        renderMergedProps(component, routeProps, rest)
+      ) : (
+        <Redirect
+          to={{
+            pathname: redirectTo,
+            state: { from: routeProps.location }
+          }}
+        />
+      );
+    }}
+  />
+);
