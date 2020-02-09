@@ -32,6 +32,8 @@ createConnection({
   entities: [User]
 })
   .then(async connection => {
+    console.log(`Connected to PostgreSQL database`);
+
     const firebaseConfig = {
       type: "service_account",
       projectId: env.FIREBASE_PROJECT_ID,
@@ -45,20 +47,22 @@ createConnection({
       credential: firebase.credential.cert(firebaseConfig),
       databaseURL: env.FIREBASE_DATABASE_URL
     });
+    console.log("Firebase initialized");
 
-    console.log(`Connected to PostgreSQL database`);
     await connection.synchronize();
 
     const router = express();
-    applyMiddleware(middleware, router);
-    applyRoutes(routes, router);
-    applyMiddleware(errorHandlers, router);
 
     // Serve frontend from client/build (need to step back out of dist)
     // Possible "to do" - have react:build move the client folder into dist/
     router.use(express.static(path.join(__dirname, "../client/build")));
+
+    applyMiddleware(middleware, router);
+    applyRoutes(routes, router);
+    applyMiddleware(errorHandlers, router);
+
     router.use("*", (req, res) => {
-      res.sendFile(path.resolve(__dirname, "../client/build"));
+      res.sendFile(path.join(__dirname, "../client/build"));
     });
 
     const { PORT = 3001 } = process.env;
