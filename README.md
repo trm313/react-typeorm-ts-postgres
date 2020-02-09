@@ -104,6 +104,6 @@ Server skeleton, middlewares, routes, unit tests, integration tests:
 
 # To Do List
 
-- [x] Server static client/build directory from server
-- [ ] Set up user authentication and authorization
-- [ ] Push to heroku (ensure it builds the static frontend, get Heroku Postgres running)
+- [ ] Set up user authentication and authorization workflows
+- [ ] Configure a boilerplate Admin Dashboard, accessible via a protected frontend route
+- [ ] Setup example CRUD actions from within the Admin Dashboard
