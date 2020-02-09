@@ -35,7 +35,9 @@
 >
 > Example: `postgresql://myuser:pass123@localhost:5432/mydatabase`
 
-## Development Runtime
+## Running the Application
+
+### Development Runtime
 
 In two terminals execute:
 
@@ -45,13 +47,13 @@ In two terminals execute:
 
 Calls prefaced with `/api` will be proxied to the development server on port 3001, as configured in the `setupProxy.js` file
 
-## Production Runtime
+### Production Runtime
 
 Execute `npm run heroku-postbuild`, which will trigger the React client to build. The application will then be served statically from the server root
 
-### Build Process
+#### Production Build Process
 
-#### Backend Server
+##### Backend Server
 
 The `build` script from the server root will trigger `tsc` which will compile the source into the `dist/` folder. 
 
@@ -59,11 +61,11 @@ Running `npm start` from the server root will then execute `node dist/server.js`
 
 The server will be looking to serve the front-end application from the `client/build` folder, which is compiled in the Frontend build step. The Frontend build is triggered by the `heroku-postbuild` script, which is automatically triggered when publishing to Heroku.
 
-#### Frontend Application
+##### Frontend Application
 
 The `heroku-postbuild` script triggers the frontend to build its dependencies, and then launches the `build` script from the client `package.json` file. This `build` script launches two additional scripts: `build:css` and `build:react`.
 
-`build:css` tells TailwindCSS to compile from the `src/styles/index.css` file into an output file `src/index.css`, which is referenced directly from the `index.js` frontend file.
+`build:css` tells TailwindCSS to compile from the `src/styles/index.css` file into an output file `src/index.css`, which is referenced directly from the `index.js` frontend entry point.
 
 `build:react` triggers the standard Create-React-App build process, which builds the client into subfolder `./Build`, which is served from the backend server directly.
 
