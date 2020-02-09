@@ -8,6 +8,7 @@
 4. Create a `.env` file at the server root, and add keys as defined in the `./src/config/env.ts` file
 
 - `PG_URL` is your PostegreSQL connection string in the form of `postgresql://[username]:[password]@[host]:[port]]/[database]`
+  - Example: `postgresql://myuser:pass123@localhost:5432/mydatabase`
 
 ## Development Runtime
 
