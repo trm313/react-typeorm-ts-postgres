@@ -3,6 +3,7 @@ import { auth } from "../services/firebase";
 
 let initialState = {
   signedIn: false,
+  pending: true,
   data: null
 };
 
@@ -13,11 +14,16 @@ const userSlice = createSlice({
     signUserIn(state, action) {
       return {
         signedIn: true,
+        pending: false,
         data: action.payload
       };
     },
     signUserOut() {
-      return initialState;
+      return {
+        signedIn: false,
+        pending: false,
+        data: null
+      };
     }
   }
 });
