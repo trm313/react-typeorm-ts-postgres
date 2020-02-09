@@ -43,6 +43,10 @@ _Note: The demo is hosted on a free Heroku dyno, so it will likely require a few
 >
 > Example: `postgresql://myuser:pass123@localhost:5432/mydatabase`
 
+> The `FIREBASE_*` parameters are gathered from your Firebase project `Service accounts` setting
+
+5. Add your Firebase web keys into the `client/src/services/firebase.js` file
+
 ## Running the Application
 
 ### Development Runtime
