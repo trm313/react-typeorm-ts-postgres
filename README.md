@@ -7,7 +7,7 @@
 3. Install the client packages: `cd client && npm install`
 4. Create a `.env` file at the server root, and add keys as defined in the `./src/config/env.ts` file
 
-- `PG_URL` is your PostegreSQL connection string in the form of `postgresql://[username]:[password]@[host]:[port]]/[database]
+- `PG_URL` is your PostegreSQL connection string in the form of `postgresql://[username]:[password]@[host]:[port]]/[database]`
 
 ## Development Runtime
 
