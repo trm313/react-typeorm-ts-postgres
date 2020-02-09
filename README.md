@@ -3,12 +3,16 @@
 ## Installation
 
 1. Clone this git repository: `git clone https://github.com/trm313/react-typeorm-ts-postgres.git [directory]`
+
 2. Install the server packages: `npm install`
+
 3. Install the client packages: `cd client && npm install`
+
 4. Create a `.env` file at the server root, and add keys as defined in the `./src/config/env.ts` file
 
-  - `PG_URL` is your PostegreSQL connection string in the form of `postgresql://[username]:[password]@[host]:[port]]/[database]`
-    - Example: `postgresql://myuser:pass123@localhost:5432/mydatabase`
+> `PG_URL` is your PostegreSQL connection string in the form of `postgresql://[username]:[password]@[host]:[port]]/[database]`
+>
+> Example: `postgresql://myuser:pass123@localhost:5432/mydatabase`
 
 ## Development Runtime
 
