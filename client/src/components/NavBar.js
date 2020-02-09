@@ -1,10 +1,16 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { connect } from "react-redux";
+
+import { auth } from "../services/firebase";
+import { signUserOut } from "../reducers/userReducer";
 
 let styles = {
   links:
     "w-full md:visible md:block flex-grow md:flex md:items-center md:w-auto",
-  link: "block mt-4 md:inline-block md:mt-0 text-teal-200 hover:text-white mr-4 uppercase hover:shadow rounded-lg py-2 px-4"
+  link:
+    "block mt-4 md:inline-block md:mt-0 text-teal-200 hover:text-white mr-4 uppercase hover:shadow rounded-lg py-2 px-4"
 };
 
 const NavLink = ({ text, to, className = styles.link }) => {
@@ -15,8 +21,10 @@ const NavLink = ({ text, to, className = styles.link }) => {
   );
 };
 
-const NavBar = () => {
+const NavBar = ({ signUserOut }) => {
   const [navOpen, setNavOpen] = useState(false);
+
+  const user = useSelector(store => store.user);
 
   return (
     <nav className="flex items-center justify-between flex-wrap bg-teal-500 py-4 px-6">
@@ -58,15 +66,25 @@ const NavBar = () => {
           <NavLink to="#" text="Docs" />
           <NavLink to="#" text="Examples" />
           <NavLink to="#" text="Blog" />
-          
-          
         </div>
         <div className="ml-12">
-          <NavLink to="#" text="Sign Up" className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 md:mt-0" />
+          {user.signedIn && (
+            <button onClick={() => auth.signOut()}>Sign Out</button>
+          )}
+          {!user.signedIn && (
+            <NavLink
+              to="/login"
+              text="Sign Up"
+              className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 md:mt-0"
+            />
+          )}
         </div>
       </div>
     </nav>
   );
 };
 
-export default NavBar;
+const mapDispatch = { signUserOut };
+
+export default connect(null, mapDispatch)(NavBar);
+// export default NavBar;
