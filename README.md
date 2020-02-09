@@ -81,7 +81,7 @@ For more granular details, see the specific breakdowns below
 
 ##### Backend Server
 
-The `build` script from the server root will trigger `tsc` which will compile the source into the `dist/` folder. 
+The `build` script from the server root will trigger `tsc` which will compile the source into the `dist/` folder. This location is specified in the `tsconfig.json` file via the `outDir` key.
 
 Running `npm start` from the server root will then execute `node dist/server.js`, spinning up the server from the compiled `dist/` folder. 
 
