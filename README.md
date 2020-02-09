@@ -56,7 +56,7 @@ Execute `npm run heroku-postbuild`, which will trigger both the backend server a
 #### Production Build Process
 
 If present, Heroku will run the `heroku-postbuild` script *instead* of the `build` script. The `heroku-postbuild` script in the root `package.json` file will trigger a full build of the application, including:
-1. Compiling the TypeScript server into a JavaScript `dist/` folder
+1. Compiling the TypeScript server into JavaScript in the `dist/` folder
 2. Installing the frontend dependencies
 3. Building the frontend React client into the `client/build` folder
 
