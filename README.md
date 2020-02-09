@@ -55,7 +55,9 @@ In development mode, calls from the frontend that are prefaced with `/api` will 
 
 ### Production Runtime
 
-Executing `npm run heroku-postbuild` will trigger both the backend server and the React frontend client to build. The application will then be served statically from the server root
+Executing `npm run heroku-postbuild` will trigger both the backend server and the React frontend client to build. The application will then be served statically from the server root. 
+
+You can execute this command locally to test functionality of a static deployment, and it will also be key to deploying your application to Heroku as described below
 
 #### Deploying to Heroku
 
@@ -65,6 +67,8 @@ To deploy this application to Heroku:
 2. Setup your Postgres database. A free option is via the "Heroku Postgres" add-on, which can be added to your Heroku app from the `Resources` tab
 3. Add your environment variables to the Heroku application on the `Settings` tab. **Important:** Without the `PG_URL` variable, the application will not start
 4. Deploy your application, and (optional) set up auto-deployments from your repository's `master` branch
+
+When deployed, Heroku will install the dependencies configured in the application's root `package.json` file, and then execute the `heroku-postbuild` script. Once finished, Heroku will run the command specified in the `Procfile` at the application's root, which for us is `npm start`.
 
 #### Production Build Process
 
