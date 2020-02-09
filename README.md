@@ -1,5 +1,14 @@
 # Full-stack Boilerplate - React, Express, Node, TypeORM
 
+## Installation
+
+1. Clone this git repository: `git clone https://github.com/trm313/react-typeorm-ts-postgres.git [directory]`
+2. Install the server packages: `npm install`
+3. Install the client packages: `cd client && npm install`
+4. Create a `.env` file at the server root, and add keys as defined in the `./src/config/env.ts` file
+
+- `PG_URL` is your PostegreSQL connection string in the form of `postgresql://[username]:[password]@[host]:[port]]/[database]
+
 ## Development Runtime
 
 In two terminals execute:
@@ -8,7 +17,7 @@ In two terminals execute:
 
 `npm run client` - starts the client in development & watch mode on port 3000
 
-Calls prefaced with /api will be proxied to the development server on port 3001, configured in the `setupProxy.js` file
+Calls prefaced with `/api` will be proxied to the development server on port 3001, as configured in the `setupProxy.js` file
 
 ## Production Runtime
 
