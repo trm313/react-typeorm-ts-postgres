@@ -62,7 +62,7 @@ createConnection({
     applyMiddleware(errorHandlers, router);
 
     router.use("*", (req, res) => {
-      res.sendFile(path.join(__dirname, "../client/build"));
+      res.sendFile(path.join(__dirname, "../client/build/index.html"));
     });
 
     const { PORT = 3001 } = process.env;
