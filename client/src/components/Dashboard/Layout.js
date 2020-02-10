@@ -27,7 +27,7 @@ const Sidebar = () => {
         {links.map((link, index) => (
           <Link
             to={link.to}
-            className="my-4 py-2 px-4 flex items-center"
+            className="my-2 py-4 px-4 flex items-center hover:bg-teal-300"
             key={`sidebar-navlink-${link.text}`}
           >
             <i className={`${link.icon} text-3xl md:text-lg md:mr-4`} />
