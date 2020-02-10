@@ -13,7 +13,7 @@ import Login from "./components/Login";
 import Logout from "./components/Logout";
 import Landing from "./components/Landing";
 import Dashboard from "./components/Dashboard";
-import NavBar from "./components/NavBar";
+
 import "./App.css";
 
 import { auth, listenToFirebaseAuth } from "./services/firebase";
@@ -29,8 +29,7 @@ const App = ({ signUserIn, signUserOut }) => {
 
   return (
     <Router>
-      <div className="flex flex-col min-h-screen">
-        <NavBar />
+      <div>
         <Switch>
           <Route exact path="/" component={Landing} />
           <Route exact path="/login" component={Login} />
@@ -62,7 +61,8 @@ const renderMergedProps = (component, ...rest) => {
 };
 
 const PrivateRoute = ({ user, component, redirectTo, ...rest }) => {
-  // user.pending is set by default, and set to false when user authentication is confirmed or denied
+  // user.pending is set to true on initial load, and set to false once user authentication is confirmed or denied
+  // This LoadingScreen will show during the gap between load and verification, preventing the fallback redirect to be triggered unnecessarily
   if (user.pending) {
     return <LoadingScreen />;
   }
