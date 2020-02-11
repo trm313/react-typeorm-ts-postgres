@@ -6,6 +6,8 @@ import PageLayout from "../PageLayout";
 
 // Configure FirebaseUI.
 const uiConfig = {
+  // Disable Account Chooser redirect
+  credentialHelper: "none",
   // Popup signin flow rather than redirect flow.
   signInFlow: "popup",
   callbacks: {

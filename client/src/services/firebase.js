@@ -8,7 +8,7 @@ const config = {
   // ...
 };
 firebase.initializeApp(config);
-
+// firebaseui.auth.CredentialHelper.NONE === 'none'
 export const auth = firebase.auth();
 
 export const listenToFirebaseAuth = (cbSignIn, cbSignOut) => {
