@@ -1,12 +1,11 @@
 import { Request, Response } from "express";
 
-import { verifyAuth } from '../../middleware/auth';
+import { verifyAuth } from "../../middleware/auth";
 
 import {
   checkNewUserParams,
   checkEmailIsUnique
 } from "../../middleware/checks";
-
 
 import { createUser } from "./UserController";
 
@@ -16,7 +15,8 @@ export default [
     method: "get",
     handler: [
       verifyAuth,
-      async ({ query }: Request, res: Response) => {
+      async (req: Request, res: Response) => {
+        console.log("user: ", req.user);
         res.status(200).send({ route: "/api/v1/user" });
       }
     ]

@@ -3,7 +3,9 @@ import express from "express";
 import dotenv from "dotenv";
 import path from "path";
 import { createConnection } from "typeorm";
-import * as firebase from "firebase-admin";
+// import * as firebase from "firebase-admin";
+
+import { initializeFirebase } from "./middleware/auth";
 
 import env from "./config/env";
 
@@ -34,19 +36,20 @@ createConnection({
   .then(async connection => {
     console.log(`Connected to PostgreSQL database`);
 
-    const firebaseConfig = {
-      type: "service_account",
-      projectId: env.FIREBASE_PROJECT_ID,
-      privateKey:
-        env.FIREBASE_PRIVATE_KEY &&
-        env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, "\n"),
-      clientEmail: env.FIREBASE_CLIENT_EMAIL
-    };
+    // const firebaseConfig = {
+    //   type: "service_account",
+    //   projectId: env.FIREBASE_PROJECT_ID,
+    //   privateKey:
+    //     env.FIREBASE_PRIVATE_KEY &&
+    //     env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, "\n"),
+    //   clientEmail: env.FIREBASE_CLIENT_EMAIL
+    // };
 
-    firebase.initializeApp({
-      credential: firebase.credential.cert(firebaseConfig),
-      databaseURL: env.FIREBASE_DATABASE_URL
-    });
+    // firebase.initializeApp({
+    //   credential: firebase.credential.cert(firebaseConfig),
+    //   databaseURL: env.FIREBASE_DATABASE_URL
+    // });
+    initializeFirebase();
     console.log("Firebase initialized");
 
     await connection.synchronize();
