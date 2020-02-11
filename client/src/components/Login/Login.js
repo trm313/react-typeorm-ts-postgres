@@ -2,6 +2,8 @@ import React from "react";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import firebase, { auth } from "../../services/firebase";
 
+import PageLayout from "../PageLayout";
+
 // Configure FirebaseUI.
 const uiConfig = {
   // Popup signin flow rather than redirect flow.
@@ -32,11 +34,14 @@ const uiConfig = {
 
 const Login = () => {
   return (
-    <div>
-      <h1>My App</h1>
-      <p>Please sign-in:</p>
-      <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={auth} />
-    </div>
+    <PageLayout>
+      <div className="flex-grow flex flex-col items-center justify-center">
+        <div className="flex flex-col items-center justify-center bg-white p-8 rounded-lg shadow">
+          <h1 className="uppercase text-2xl">NoPostgrets</h1>
+          <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={auth} />
+        </div>
+      </div>
+    </PageLayout>
   );
 };
 

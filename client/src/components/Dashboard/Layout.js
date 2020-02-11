@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import useOnClickOutside from "../../hooks/useOnClickOutside";
 
 const links = [
   {
@@ -21,6 +22,20 @@ const links = [
 ];
 
 const Sidebar = () => {
+  /**
+ *   Setup styles for the following behavior:
+       On desktop: sidebar left, and "open" by default
+             Toggle button can minimize it
+            When minimized, hover will open it, hoverOut will minimize it
+        On mobile: sidebar becomes bottom nav
+ */
+
+  const nav = {
+    base: "bg-teal-500 text-white flex flex-col py-4",
+    pcMin: "w-16",
+    pcMax: "w-40"
+  };
+
   return (
     <nav className="bg-teal-500 text-white flex flex-col py-4 w-16 md:w-40">
       <div className="text-lg uppercase flex flex-col">
@@ -42,7 +57,11 @@ const Sidebar = () => {
 };
 
 const NavBar = () => {
-  const [userOpen, setUserOpen] = useState(false);
+  const ref = useRef();
+
+  const [isUserDropdownOpen, setUserDropdownOpen] = useState(false);
+
+  useOnClickOutside(ref, () => setUserDropdownOpen(false));
 
   return (
     <nav className="bg-teal-500 flex items-center justify-between py-4 px-6 w-screen">
@@ -61,18 +80,18 @@ const NavBar = () => {
         </span>
       </Link>
 
-      <div className="relative" onBlur={() => setUserOpen(false)}>
+      <div className="relative" ref={ref}>
         <button
-          onClick={() => setUserOpen(!userOpen)}
+          onClick={() => setUserDropdownOpen(!isUserDropdownOpen)}
           className="h-12 w-12 rounded-full bg-gray-400 text-white flex items-center justify-center cursor-pointer shadow"
         >
-          {userOpen ? (
+          {isUserDropdownOpen ? (
             <i className="lni-close text-sm" />
           ) : (
             <i className="lni-user text-2xl" />
           )}
         </button>
-        {userOpen && (
+        {isUserDropdownOpen && (
           <div className="flex flex-col bg-gray-100 shadow p-4 w-40 absolute right-0">
             <Link
               to="/logout"
