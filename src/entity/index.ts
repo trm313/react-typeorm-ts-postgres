@@ -1,3 +1,4 @@
 import { User } from "./User";
+import { Event } from "./Event";
 
-export default [User];
+export default [User, Event];

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import Layout from "./Layout";
+import Events from "./Events";
 
 const Dashboard = () => {
   const user = useSelector(store => store.user);
@@ -26,6 +27,7 @@ const Dashboard = () => {
     <Layout>
       <h1>Dashboard</h1>
       <p>Welcome, {user.data.displayName}</p>
+      <Events />
     </Layout>
   );
 };

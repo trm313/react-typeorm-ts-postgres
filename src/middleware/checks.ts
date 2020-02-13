@@ -52,3 +52,16 @@ export const checkEmailIsUnique = async (
     next();
   }
 };
+
+export const checkNewEventParams = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  let { name, hosts, startTime } = req.body;
+  if (!name || !hosts || !startTime) {
+    throw new HTTP400Error("Missing required fields");
+  } else {
+    next();
+  }
+};
