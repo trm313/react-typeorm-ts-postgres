@@ -110,7 +110,7 @@ User authentication is handled via Firebase. On the front-end, this repo leverag
 
 During this authentication validation, the user's information and `access_token` are collected, and stored in the Redux `user` state.
 
-This `access_token` is then supplied in the Authorization Header during calls to protected routes on the backend, where the token is validated with Firebase inside a router middleware, to then facilitate all data fetching calls.
+This `access_token` is then supplied in the request header during calls to protected routes on the backend, where the token is validated with Firebase inside a router middleware, to then facilitate all data fetching calls.
 
 ### Detailed Process Flow
 
@@ -128,15 +128,19 @@ Protected routes can be configured, and there is an example set up in the `App` 
 
 #### Sending API Calls for User-Protected Routes
 
-Coming soon...
+The user's `access_token` is to be included in the request header as `FIREBASE_AUTH_TOKEN`. Here is how one can do this in the module `axios`:
+
+```javascript
+import axios from "axios";
+axios.defaults.headers.common["FIREBASE_AUTH_TOKEN"] = user.data.accessToken;
+const result = await axios.get("/api/v1/user");
+```
 
 #### Backend Authentication & Authorization
 
-The `auth.ts` middleware can be applied to any route handlers to ensure the user making the API call is authenticated, and then provide them with the data corresponding to their account.
+The `verifyAuth` function in the `auth.ts` middleware can be applied to any route handlers to ensure the user making the API call is authenticated, and then provide them with the data corresponding to their account.
 
-This middleware will decode the provided token to reveal their user details. These user details can then safely be used to query for eg. the posts belonging to that user.
-
-More details coming soon..
+This middleware will decode the provided token against Firebase to re-reveal their user details. The user's `uuid` and `email` are then attached to the request as `req.user` before passing into the next middleware.
 
 # Resources
 
