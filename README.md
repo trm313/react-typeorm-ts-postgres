@@ -149,8 +149,10 @@ Server skeleton, middlewares, routes, unit tests, integration tests:
 - Tutorial: [Product ready NodeJS REST APIs setup using TypeScript](https://itnext.io/production-ready-node-js-rest-apis-setup-using-typescript-postgresql-and-redis-a9525871407)
 - Source Code [alexpermyakov/node-rest-api](https://github.com/alexpermyakov/node-rest-api/tree/step.9)
 
-# To Do List
+# Next up on the To Do List
 
-- [ ] Set up user authentication and authorization workflows
-- [ ] Configure a boilerplate Admin Dashboard, accessible via a protected frontend route
+- [x] Set up user authentication and authorization workflows
+- [x] Configure a boilerplate Admin Dashboard, accessible via a protected frontend route
+- [x] Setup example CRUD routes in the API
 - [ ] Setup example CRUD actions from within the Admin Dashboard
+- [ ] Create reusable functions to handle HTTP requests, so the headers don't have to be manually set repeatedly

@@ -43,6 +43,14 @@ const NavBar = ({ signUserOut }) => {
           PERN Starter
         </span>
       </Link>
+      <a
+        className="cursor-pointer py-1 px-2 flex items-center border border-solid border-white rounded text-white shadow hover:bg-white hover:text-teal-500"
+        href="https://github.com/trm313/react-typeorm-ts-postgres"
+        target="__blank"
+      >
+        <i className="lni-github-original mr-2" />
+        Github
+      </a>
       <div className="block md:hidden">
         <button
           onClick={() => setNavOpen(!navOpen)}
