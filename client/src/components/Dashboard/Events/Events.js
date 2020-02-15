@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 
 import EventForm from "../EventForm";
+import EventItem from "./EventItem";
 
 const Events = () => {
   const user = useSelector(store => store.user);
@@ -17,6 +18,13 @@ const Events = () => {
     } catch {
       setEvents("ERROR");
     }
+  }
+
+  async function deleteEvent(id) {
+    axios.defaults.headers.common["FIREBASE_AUTH_TOKEN"] =
+      user.data.accessToken;
+    const result = await axios.delete("/api/v1/event/" + id);
+    fetchEvents();
   }
 
   useEffect(() => {
@@ -44,13 +52,7 @@ const Events = () => {
         {events !== "ERROR" &&
           events &&
           events.map(event => (
-            <div className="flex flex-col bg-white shadow rounded p-4 my-2">
-              <h6 className="uppercase text-lg font-bold text-gray-800">
-                {event.name}
-              </h6>
-              <p>{event.hosts}</p>
-              <p>{event.startTime}</p>
-            </div>
+            <EventItem event={event} onDelete={deleteEvent} />
           ))}
       </div>
     </div>

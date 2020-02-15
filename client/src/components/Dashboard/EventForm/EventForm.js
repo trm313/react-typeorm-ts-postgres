@@ -102,6 +102,7 @@ const EventForm = ({ refresh }) => {
           <div className="flex items-center">
             <button
               className="py-2 px-4 bg-gray-600 text-white rounded shadow flex items-center mr-4"
+              type="button"
               onClick={() => onFormCancel()}
             >
               <i className="lni-ban mr-2" />
