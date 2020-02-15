@@ -76,3 +76,23 @@ export const deleteEvent = async (eventId: number, userId: string) => {
   await eventRepository.delete({ id: eventId, ownerUid: userId });
   return "Event deleted";
 };
+
+/**
+ * PUT /event/:id -- Update Event by ID
+ * @param eventId
+ * @param userId
+ * @param data
+ */
+export const updateEvent = async (
+  eventId: number,
+  userId: string,
+  data: any
+) => {
+  console.log("updateEvent");
+  const eventRepository = getRepository(Event);
+  let event = await eventRepository.update(
+    { id: eventId, ownerUid: userId },
+    data
+  );
+  return event;
+};

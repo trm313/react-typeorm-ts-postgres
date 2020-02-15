@@ -622,6 +622,37 @@ code {
     monospace;
 }
 
+/** FORMS **/
+
+.form-input {
+  flex-grow: 1;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  background-color: #edf2f7;
+  color: #2d3748;
+  border-radius: 9999px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  font-size: 0.875rem;
+  margin: 0.25rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.form-label {
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  flex-shrink: 0;
+  margin-right: 0.5rem;
+}
+
 .spin-inf {
   animation: spin infinite 0.75s linear;
 }

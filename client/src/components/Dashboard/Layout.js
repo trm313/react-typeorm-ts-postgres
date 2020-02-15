@@ -110,11 +110,11 @@ const NavBar = () => {
 const Layout = props => {
   const user = useSelector(store => store.user);
   return (
-    <div className="w-screen h-screen flex flex-col">
+    <div className="h-screen flex flex-col">
       <NavBar />
       <div className="flex-grow flex">
         <Sidebar />
-        <section className="p-10">{props.children}</section>
+        <section className="p-10 flex-grow">{props.children}</section>
       </div>
     </div>
   );

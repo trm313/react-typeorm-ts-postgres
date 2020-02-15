@@ -8,7 +8,8 @@ import {
   createEvent,
   getEvents,
   deleteEvent,
-  getEvent
+  getEvent,
+  updateEvent
 } from "./EventController";
 
 export default [
@@ -22,6 +23,32 @@ export default [
         let eventId = req.params.id;
         let events = await getEvent(+eventId, user!.uid);
         res.status(200).send({ events });
+      }
+    ]
+  },
+  {
+    path: "/api/v1/event/:id",
+    method: "delete",
+    handler: [
+      verifyAuth,
+      async (req: Request, res: Response) => {
+        let eventId = req.params.id;
+        let user = req.user;
+        let message = await deleteEvent(+eventId, user!.uid);
+        res.status(200).send({ message });
+      }
+    ]
+  },
+  {
+    path: "/api/v1/event/:id",
+    method: "put",
+    handler: [
+      verifyAuth,
+      async (req: Request, res: Response) => {
+        let eventId = req.params.id;
+        let user = req.user;
+        let event = await updateEvent(+eventId, user!.uid, req.body);
+        res.status(200).send({ event });
       }
     ]
   },
@@ -48,19 +75,6 @@ export default [
         data.ownerUid = req.user?.uid;
         let event = await createEvent(data);
         res.status(201).send({ event });
-      }
-    ]
-  },
-  {
-    path: "/api/v1/event/:id",
-    method: "delete",
-    handler: [
-      verifyAuth,
-      async (req: Request, res: Response) => {
-        let eventId = req.params.id;
-        let user = req.user;
-        let message = await deleteEvent(+eventId, user!.uid);
-        res.status(200).send({ message });
       }
     ]
   }
