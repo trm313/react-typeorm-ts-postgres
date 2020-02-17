@@ -3,6 +3,6 @@
   "host": "localhost",
   "port": "5432",
   "username": "postgres",
-  "password": "viewsonic",
+  "password": "password",
   "database": "boilerplate"
 }
